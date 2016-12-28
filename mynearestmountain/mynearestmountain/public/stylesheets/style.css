@@ -133,3 +133,7 @@ header {
 p {
   line-height: 1.8;
 }
+.mapframe iframe {
+  width: 800px;
+  height: 600px;
+}

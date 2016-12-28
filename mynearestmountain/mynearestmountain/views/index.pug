@@ -1,7 +1,10 @@
 extend layout
 block content
-  p
-    | Let's get you exploring.
+	p
+		| Let's get you exploring.
 
-  input(type='text', name='destination')
-  input(type='button' value='Find')
+	input(type='text', name='destination')
+	input(type='button' value='Find')
+
+	.mapframe
+		iframe(src='//www.google.com/maps/embed/v1/place?q=Sheffield&zoom=14&key=AIzaSyCDJ8BS-G0TOQAyNPxPxWcsQ53_JHrN_9M')
