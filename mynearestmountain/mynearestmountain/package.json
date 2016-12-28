@@ -1,0 +1,25 @@
+{
+  "name": "mynearestmountain",
+  "version": "1.0.0",
+  "description": "Finds your nearest mountain!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evansabove/mynearestmountain.git"
+  },
+  "author": "Andy Evans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evansabove/mynearestmountain/issues"
+  },
+  "homepage": "https://github.com/evansabove/mynearestmountain#readme",
+  "dependencies": {
+    "express": "3.0.0alpha4", 
+    "pug": "^2.0.0-beta6",
+    "stylus": "^0.49.1",
+    "nib": "^1.0.4"
+  }
+}
