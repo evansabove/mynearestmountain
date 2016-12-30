@@ -1,14 +1,18 @@
 doctype
 html
   head
-    title My Nearest Mountain - #{title}
+    title My nearest Mountain - #{title}
     link(rel='stylesheet', href='/stylesheets/style.css')
     
+    | <script>
+    include ../public/js/mapInitialise.js
+    | </script>
+
   body
     header
-      h1 My Nearest Mountain
+      h1 My nearest Mountain
     .container
       .main-content
         block content
 
-  include scriptIncludes.pug
+  include footerIncludes.pug
