@@ -1,22 +1,32 @@
 var mountains = [
-	{ name: "Ben Nevis", location: {lat: 56.796944, lng: -5.003611}},
-	{ name: "Scafell Pike", location: {lat: 54.454222, lng: -3.211528}},
-	{ name: "Snowdon", location: {lat: 53.068497, lng: -4.076231}}
+	{ id: 1, name: "Ben Nevis", location: {lat: 56.796944, lng: -5.003611}},
+	{ id: 2, name: "Scafell Pike", location: {lat: 54.454222, lng: -3.211528}},
+	{ id: 3, name: "Snowdon", location: {lat: 53.068497, lng: -4.076231}}
 ];
 	
-var initMap = function() {
+var initMap = function(location) {
+	if(!google)
+		return;
+	
 	var map = new google.maps.Map(document.getElementById('map'), {
 	  zoom: 11,
-	  center: mountains[1].location
+	  center: location
 	});
 	var marker = new google.maps.Marker({
-	  position: mountains[1].location,
+	  position: location,
 	  map: map
 	});
 }
 
-function model() {
-	this.mountains = mountains.map(function(mountain) { return mountain.name; });
+var model = function() {
+	this.mountains = ko.observableArray(mountains);
+
+	this.selectedMountain = ko.observable();
+	this.selectedMountain.subscribe(function(val) {
+		var mountain = mountains.filter(function(x) { return x.id === val; })[0];
+		initMap(mountain.location);
+	});
 }
 
-ko.applyBindings(new model());
+var viewModel = new model();
+ko.applyBindings(viewModel);

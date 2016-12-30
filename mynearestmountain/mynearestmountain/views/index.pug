@@ -4,7 +4,7 @@ block content
 	p
 		| Let's get you exploring.
 
-	select(data-bind="options: mountains")
+	select(data-bind="options: mountains, optionsText: function(item) { return item.name; }, optionsValue: function(item) { return item.id; }, value: selectedMountain")
 
 	.mapframe
 		div(id='map')
