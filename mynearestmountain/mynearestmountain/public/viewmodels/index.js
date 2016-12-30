@@ -5,13 +5,7 @@ var mountains = [
 ];
 	
 var initMap = function(destinationLocation) {
-	if(!google)
-		return;
-
-	var map = new google.maps.Map(document.getElementById('map'), {
-	  zoom: 11,
-	  center: location
-	});
+	var map = new google.maps.Map(document.getElementById('map'));
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -21,7 +15,7 @@ var initMap = function(destinationLocation) {
 	          lng: position.coords.longitude
 	        };
 
-	        var targetPosition = mountains[2].location;
+	        var targetPosition = findNearestMountain(currentPosition).location;
 
 	        var directionsService = new google.maps.DirectionsService();
 	        var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -51,6 +45,31 @@ var initMap = function(destinationLocation) {
                           'Error: Your browser doesn\'t support geolocation.');
   }
 
+}
+
+var findNearestMountain = function(currentPosition) {
+	
+	var distances = mountains.map(function(mountain) {
+		var latSquare = Math.pow(mountain.location.lat - currentPosition.lat, 2);
+		var lngSquare = Math.pow(mountain.location.lng - currentPosition.lng, 2);
+
+		var distance = Math.sqrt(latSquare + lngSquare);
+
+		return { 
+			mountain: mountain, 
+			distance: distance 
+		}
+	});
+
+	var sortedDistances = distances.sort(function(a, b) { 
+		if(a.distance < b.distance) 
+			return -1;
+		if(a.distance > b.distance)
+			return 1;
+		return 0;
+	});
+
+	return sortedDistances[0].mountain;
 }
 
 var model = function() {}
