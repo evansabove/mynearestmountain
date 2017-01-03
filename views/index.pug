@@ -1,5 +1,7 @@
 extend layout
 
 block content
+	h1(class='banner' id='banner' data-bind="text: 'Your nearest mountain is ' + nearestMountainName")
+
 	.mapframe
 		div(id='map')

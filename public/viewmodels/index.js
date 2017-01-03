@@ -1,7 +1,8 @@
 var mountains = [
 	{ id: 1, name: "Ben Nevis", location: {lat: 56.796944, lng: -5.003611}},
 	{ id: 2, name: "Scafell Pike", location: {lat: 54.454222, lng: -3.211528}},
-	{ id: 3, name: "Snowdon", location: {lat: 53.068497, lng: -4.076231}}
+	{ id: 3, name: "Snowdon", location: {lat: 53.068497, lng: -4.076231}},
+	{ id: 4, name: "Pen y Fan", location: {lat: 51.88328, lng: -3.43684}}
 ];
 	
 var initMap = function(destinationLocation) {
@@ -15,7 +16,7 @@ var initMap = function(destinationLocation) {
 	          lng: position.coords.longitude
 	        };
 
-	        var targetPosition = findNearestMountain(currentPosition).location;
+	        var targetPosition = findNearestMountain(currentPosition);
 
 	        var directionsService = new google.maps.DirectionsService();
 	        var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -23,13 +24,16 @@ var initMap = function(destinationLocation) {
 
 	        directionsService.route({
 	        	origin: currentPosition,
-			    destination: targetPosition,
+			    destination: targetPosition.location,
 			    travelMode: 'DRIVING'
 	        }, function(result, status) {
 				if (status == 'OK') {
+					console.log(result);
 				    directionsDisplay.setDirections(result);
 				}
 	        });
+
+	        createModel(targetPosition.name);
       	}, function() {
         handleLocationError(true, infoWindow, map.getCenter());
       });
@@ -48,7 +52,6 @@ var initMap = function(destinationLocation) {
 }
 
 var findNearestMountain = function(currentPosition) {
-	
 	var distances = mountains.map(function(mountain) {
 		var latSquare = Math.pow(mountain.location.lat - currentPosition.lat, 2);
 		var lngSquare = Math.pow(mountain.location.lng - currentPosition.lng, 2);
@@ -72,7 +75,11 @@ var findNearestMountain = function(currentPosition) {
 	return sortedDistances[0].mountain;
 }
 
-var model = function() {}
+var createModel = function(nearestMountainName) {
+	var model = function() {
+		this.nearestMountainName = nearestMountainName;
+	}
 
-var viewModel = new model();
-ko.applyBindings(viewModel);
+	var viewModel = new model();
+	ko.applyBindings(viewModel);
+}
