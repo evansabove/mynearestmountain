@@ -30,10 +30,12 @@ var initMap = function(destinationLocation) {
 				if (status == 'OK') {
 					console.log(result);
 				    directionsDisplay.setDirections(result);
+
+				    createModel(targetPosition.name, result.routes[0].legs[0].distance.text);
 				}
 	        });
 
-	        createModel(targetPosition.name);
+	        
       	}, function() {
         handleLocationError(true, infoWindow, map.getCenter());
       });
@@ -75,9 +77,10 @@ var findNearestMountain = function(currentPosition) {
 	return sortedDistances[0].mountain;
 }
 
-var createModel = function(nearestMountainName) {
+var createModel = function(nearestMountainName, distance) {
 	var model = function() {
 		this.nearestMountainName = nearestMountainName;
+		this.distance = distance;
 	}
 
 	var viewModel = new model();
