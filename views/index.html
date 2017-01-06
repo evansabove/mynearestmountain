@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Nearest Mountain</title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>My Nearest Mountain</h1>
+        </header>
+        <div class="container">
+            <div class="main-content">
+                <h1 class="banner" id="banner" data-bind="text: 'Your nearest mountain is ' + nearestMountainName"></h1>
+                <p data-bind="text: 'It is ' + distance + ' away'"></p>
+                <div class="mapframe">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="/js/knockout-latest.js"></script>
+    <script src="/viewmodels/index.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDJ8BS-G0TOQAyNPxPxWcsQ53_JHrN_9M&amp;callback=initMap"></script>
+</html>
