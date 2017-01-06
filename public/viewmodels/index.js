@@ -117,7 +117,6 @@ var initMap = function(destinationLocation) {
 			    travelMode: 'DRIVING'
 	        }, function(result, status) {
 				if (status == 'OK') {
-					console.log(result);
 				    directionsDisplay.setDirections(result);
 
 				    createModel(targetPosition.name, result.routes[0].legs[0].distance.text);
