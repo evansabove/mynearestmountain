@@ -11,10 +11,15 @@
         </header>
         <div class="container">
             <div class="main-content">
-                <h1 class="banner" id="banner" data-bind="text: 'Your nearest mountain is ' + nearestMountainName"></h1>
-                <p data-bind="text: 'It is ' + distance + ' away'"></p>
-                <div class="mapframe">
-                    <div id="map"></div>
+                <div data-bind="if: error">
+                    <h1 data-bind="text: error"></h1>
+                </h1>
+                <div data-bind="ifnot: error">
+                    <h1 class="banner" id="banner" data-bind="text: 'Your nearest mountain is ' + nearestMountainName"></h1>
+                    <p data-bind="text: 'It is ' + distance + ' away'"></p>
+                    <div class="mapframe">
+                        <div id="map"></div>
+                    </div>
                 </div>
             </div>
         </div>

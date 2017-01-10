@@ -125,16 +125,15 @@ var initMap = function(destinationLocation) {
 
 	        
       	}, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
+        handleLocationError(true, map.getCenter());
       });
     } else {
       // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
+      handleLocationError(false, map.getCenter());
     }
 
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
+  function handleLocationError(browserHasGeolocation, pos) {
+  	createModel("", "", browserHasGeolocation ?
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
   }
@@ -165,10 +164,11 @@ var findNearestMountain = function(currentPosition) {
 	return sortedDistances[0].mountain;
 }
 
-var createModel = function(nearestMountainName, distance) {
+var createModel = function(nearestMountainName, distance, error) {
 	var model = function() {
 		this.nearestMountainName = nearestMountainName;
 		this.distance = distance;
+		this.error = error;
 	}
 
 	var viewModel = new model();
