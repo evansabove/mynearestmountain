@@ -4,6 +4,7 @@
         <title>My Nearest Mountain</title>
         <link rel="stylesheet" href="stylesheets/style.css">
         <script src="js/index.js" type="text/javascript"></script>
+        <?php include("analyticstracking.php"); ?>
     </head>
     <body>
         <header>
@@ -13,13 +14,12 @@
             <div class="main-content">
                 <div data-bind="if: error">
                     <h1 data-bind="text: error"></h1>
-                </h1>
-                <div data-bind="ifnot: error">
-                    <h1 class="banner" id="banner" data-bind="text: 'Your nearest mountain is ' + nearestMountainName"></h1>
-                    <p data-bind="text: 'It is ' + distance + ' away'"></p>
-                    <div class="mapframe">
-                        <div id="map"></div>
-                    </div>
+                </div>
+                
+                <h1 class="banner" id="banner" data-bind="text: 'Your nearest mountain is ' + nearestMountainName"></h1>
+                <p data-bind="text: 'It is ' + distance + ' away'"></p>
+                <div class="mapframe">
+                    <div id="map"></div>
                 </div>
             </div>
         </div>
