@@ -3,6 +3,7 @@
     <head>
         <title>My Nearest Mountain</title>
         <link rel="stylesheet" href="stylesheets/style.css">
+        <link rel="icon" type="image/png" href="mountain.png" />
         <script src="js/index.js" type="text/javascript"></script>
         <?php include("analyticstracking.php"); ?>
     </head>
